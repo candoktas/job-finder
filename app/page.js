@@ -69,6 +69,26 @@ export default function Home() {
           <br /> et dolore magna aliqua.
         </p>
       </main>
+      <footer>
+        <div className="flex flex-col sm:flex-row p-6 sm:p-14">
+          <div className="w-full sm:w-1/2 flex flex-col sm:flex-row">
+            <Logo />
+            <div className="pr-10">
+              <p className="font-semibold mb-4">Ready to get started?</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo
+              </p>
+            </div>
+          </div>
+          <div className="hidden sm:block min-h-full border-l border-gray-300 mx-4"></div>
+          <div className="w-full sm:w-1/2 pl-0 sm:pl-10 flex flex-col justify-end">
+            <p>&copy; 2010 &mdash; 2024 Privacy &mdash; Terms</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
