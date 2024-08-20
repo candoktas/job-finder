@@ -5,6 +5,7 @@ import LogInModal from "@/app/_components/LogInModal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openModal } from "@/app/_components/modalSlice";
 import SignUpModal from "@/app/_components/SignUpModal";
+import SideBar from "@/app/_components/SideBar";
 
 export default function Home() {
   const { isVisible, modalType } = useSelector((state) => state.modal);
