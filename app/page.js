@@ -30,18 +30,18 @@ export default function Home() {
 
   return (
     <div>
-      <nav className="flex justify-between py-4 px-6">
+      <nav className="sticky top-0 z-10 bg-white flex justify-center items-center py-4 px-6 flex-wrap sm:justify-between">
         <Logo />
-        <div className="flex gap-8">
+        <div className="flex gap-6">
           <button
             onClick={handleLogInModalOpen}
-            className="bg-white text-black font-light py-1 px-8 shadow-md hover:bg-slate-100 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-100 transform transition-transform duration-150 ease-in-out active:scale-95"
+            className="bg-primary min-w-28 max-h-8 text-secondary font-light py-1 px-8 shadow-md hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-100 transform transition-transform duration-150 ease-in-out active:scale-95"
           >
             Login
           </button>
           <button
             onClick={handleSignUpModalOpen}
-            className="bg-slate-800 text-white font-light py-1 px-8 shadow-md hover:bg-slate-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transform transition-transform duration-150 ease-in-out active:scale-95"
+            className="bg-secondary min-w-28 max-h-8 text-white font-light py-1 px-5 shadow-md hover:bg-cyan-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transform transition-transform duration-150 ease-in-out active:scale-95"
           >
             Sign Up
           </button>

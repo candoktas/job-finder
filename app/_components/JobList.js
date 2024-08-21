@@ -88,7 +88,7 @@ function JobList() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 max-h-[100vh] overflow-y-auto">
       <JobFilter onFilterChange={handleFilterChange} />{" "}
       {loading && <p>Loading jobs...</p>}
       {error && <p className="text-red-500">{error}</p>}
