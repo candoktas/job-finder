@@ -5,6 +5,7 @@ import LogInModal from "@/app/_components/LogInModal";
 import { Provider } from "react-redux";
 import { store } from "@/app/_store/store";
 import ReduxProvider from "@/app/_components/ReduxProvider";
+import LoadToken from "@/app/_components/LoadToken";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <LoadToken />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -7,16 +7,30 @@ function SignUpModal({ isVisible, onClose, onLogIn }) {
   const { loading, error } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // Yeni state
 
   if (!isVisible) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(registerUser({ email, password }));
+
+    // Şifre uzunluğunu kontrol et
+    if (password.length < 8) {
+      return;
+    }
+
+    // API'ye git ve sonucu kontrol et
+    const resultAction = await dispatch(registerUser({ email, password }));
+
+    // Eğer işlem başarılı olduysa, successMessage state'ini güncelle
+    if (registerUser.fulfilled.match(resultAction)) {
+      setSuccessMessage("Sign up successful! Please log in.");
+    }
   };
 
   const handleClose = () => {
     dispatch(clearError());
+    setSuccessMessage(""); // Modal kapatıldığında mesajı temizle
     onClose();
   };
 
@@ -79,15 +93,25 @@ function SignUpModal({ isVisible, onClose, onLogIn }) {
             {error && <div className="text-red-500 text-sm">{error}</div>}
           </div>
 
-          {loading && <div className="text-blue-500 text-sm">Loading...</div>}
-
           <button
             type="submit"
-            className="w-full py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200"
+            className="w-full py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200 flex justify-center items-center"
+            disabled={loading}
           >
-            Sign Up
+            {loading ? (
+              <span className="flex justify-center items-center">
+                <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></span>
+              </span>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
+
+        {successMessage && ( // Başarılı mesajı göster
+          <p className="text-green-500 text-center mt-4">{successMessage}</p>
+        )}
+
         <p className="mt-4 text-center text-gray-600">
           Already have an account?{" "}
           <button

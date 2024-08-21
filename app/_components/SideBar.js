@@ -9,7 +9,7 @@ function SideBar(props) {
   if (!user) return null;
 
   // Kullanıcının başvurduğu iş ilanlarının detaylarını buluyoruz
-  const appliedJobsDetails = user.appliedJobs.map((appliedJobId) =>
+  const appliedJobsDetails = (user.appliedJobs || []).map((appliedJobId) =>
     jobs.find((job) => job.id === appliedJobId),
   );
 

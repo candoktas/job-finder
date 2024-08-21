@@ -117,10 +117,17 @@ function JobList() {
                 </div>
                 <div className="flex flex-col gap-2 w-[10%] min-w-24 md:w-[16%]">
                   <button
-                    className="bg-lime-500 min-w-20 text-white font-light py-1 px-2 text-sm md:text-base md:px-4 shadow-md hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transform transition-transform duration-150 ease-in-out active:scale-95"
+                    className="bg-lime-500 min-w-20 text-white font-light py-1 px-2 text-sm md:text-base md:px-4 shadow-md hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transform transition-transform duration-150 ease-in-out active:scale-95 flex justify-center items-center"
                     onClick={() => handleDetailClick(job.id)}
+                    disabled={loadingJobId === job.id}
                   >
-                    {loadingJobId === job.id ? "Loading..." : "Detail"}
+                    {loadingJobId === job.id ? (
+                      <span className="flex justify-center items-center">
+                        <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></span>
+                      </span>
+                    ) : (
+                      "Detail"
+                    )}
                   </button>
                   {hasApplied && (
                     <button

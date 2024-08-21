@@ -17,7 +17,9 @@ export const registerUser = createAsyncThunk(
 
       if (!response.ok) {
         const errorData = await response.json();
-        return rejectWithValue(errorData.message || "Something went wrong");
+        return rejectWithValue(
+          errorData.error || errorData.message || "Something went wrong",
+        );
       }
 
       const data = await response.json();
@@ -25,10 +27,9 @@ export const registerUser = createAsyncThunk(
       localStorage.setItem("refreshToken", data.refreshToken);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      dispatch(fetchProfile());
       return data;
     } catch (error) {
-      return rejectWithValue("An unexpected error occured.");
+      return rejectWithValue(error.message || "An unexpected error occurred.");
     }
   },
 );
@@ -150,7 +151,7 @@ export const authSlice = createSlice({
         state.accessToken = accessToken;
         state.refreshToken = refreshToken;
         try {
-          state.user = JSON.parse(user); // Geçerli bir JSON olup olmadığını kontrol et
+          state.user = JSON.parse(user);
         } catch (e) {
           console.error("Invalid user data in localStorage", e);
         }
@@ -166,11 +167,8 @@ export const authSlice = createSlice({
     },
     updateAppliedJobs: (state, action) => {
       if (state.user) {
-        state.user.appliedJobs = [
-          ...state.user.appliedJobs,
-          action.payload, // Yeni başvurulan iş detayları
-        ];
-        localStorage.setItem("user", JSON.stringify(state.user)); // Güncellenen user'ı localStorage'a yaz
+        state.user.appliedJobs = [...state.user.appliedJobs, action.payload];
+        localStorage.setItem("user", JSON.stringify(state.user));
       }
     },
     removeAppliedJob: (state, action) => {
@@ -178,7 +176,7 @@ export const authSlice = createSlice({
         state.user.appliedJobs = state.user.appliedJobs.filter(
           (jobId) => jobId !== action.payload,
         );
-        localStorage.setItem("user", JSON.stringify(state.user)); // LocalStorage güncelle
+        localStorage.setItem("user", JSON.stringify(state.user));
       }
     },
     // will be added
@@ -201,7 +199,7 @@ export const authSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || "An unexpected error occurred.";
       });
 
     // Login

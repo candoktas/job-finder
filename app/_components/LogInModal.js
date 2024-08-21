@@ -81,7 +81,13 @@ function LogInModal({ isVisible, onClose, onSignUp }) {
             className="w-full py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200"
             disabled={loading}
           >
-            {loading ? "Loading..." : "Log In"}
+            {loading ? (
+              <span className="flex justify-center items-center">
+                <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></span>
+              </span>
+            ) : (
+              "Log In"
+            )}
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">
