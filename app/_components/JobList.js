@@ -86,6 +86,14 @@ function JobList() {
     }
   };
 
+  const Spinner = () => (
+    <div className="flex justify-center items-center h-screen">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+    </div>
+  );
+
+  if (loading) return <Spinner />;
+
   return (
     <div className="p-4 max-h-[100vh] overflow-y-auto">
       <JobFilter onFilterChange={handleFilterChange} />{" "}
