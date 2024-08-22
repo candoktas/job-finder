@@ -2,9 +2,9 @@
 
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { loadTokensFromStorage } from "@/app/_components/authSlice";
+import { loadTokensFromStorage } from "@/app/_store/slices/authSlice";
 
-function LoadToken(props) {
+function LoadToken() {
   const dispatch = useDispatch();
 
   useEffect(() => {

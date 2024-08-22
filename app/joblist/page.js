@@ -5,7 +5,7 @@ import JobList from "@/app/_components/JobList";
 import Logout from "@/app/_components/Logout";
 import JobListButton from "@/app/_components/JobListButton";
 
-function Page(props) {
+function Page() {
   return (
     <div className="flex flex-col md:flex-row">
       <div className="w-full">

@@ -2,13 +2,12 @@
 
 import { useSelector } from "react-redux";
 
-function SideBar(props) {
+function SideBar() {
   const { user } = useSelector((state) => state.auth);
   const { jobs } = useSelector((state) => state.jobs);
 
   if (!user) return null;
 
-  // Kullanıcının başvurduğu iş ilanlarının detaylarını buluyoruz
   const appliedJobsDetails = (user.appliedJobs || []).map((appliedJobId) =>
     jobs.find((job) => job.id === appliedJobId),
   );

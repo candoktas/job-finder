@@ -53,7 +53,7 @@ Explore the app's full functionality by browsing and applying for jobs.
 
 Feedback:
 
-If you encounter any issues or have feedback, feel free to contact us or open an issue.
+If you encounter any issues or have feedback, feel free to contact me or open an issue.
 huseyincandoktas@gmail.com
 
 

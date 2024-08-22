@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchDataWithAuth } from "@/app/_api/authApi";
-import { removeAppliedJob } from "@/app/_components/authSlice";
+import { removeAppliedJob } from "@/app/_store/slices/authSlice";
 
 export const fetchJobs = createAsyncThunk(
   "jobs/fetchJobs",
@@ -8,7 +8,6 @@ export const fetchJobs = createAsyncThunk(
     try {
       const url = "https://novel-project-ntj8t.ampt.app/api/jobs";
 
-      // fetchDataWithAuth fonksiyonunu kullanarak access token kontrolü yapıyoruz
       const response = await fetchDataWithAuth(url, dispatch, getState);
 
       if (!response.ok) {
@@ -17,7 +16,7 @@ export const fetchJobs = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data.data; // İş ilanları API'den gelen "data" array'ine karşılık gelir
+      return data.data;
     } catch (error) {
       return rejectWithValue("An unexpected error occurred.");
     }
@@ -37,7 +36,7 @@ export const fetchJobById = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data; // İş detayları API'den dönen veri
+      return data;
     } catch (error) {
       return rejectWithValue("An unexpected error occurred.");
     }
@@ -68,7 +67,7 @@ export const applyForJob = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data.message; // API'den dönen başarı mesajı
+      return data.message;
     } catch (error) {
       return rejectWithValue("An unexpected error occurred.");
     }
@@ -100,7 +99,7 @@ export const withdrawFromJob = createAsyncThunk(
 
       const data = await response.json();
       dispatch(removeAppliedJob(jobId));
-      return data.message; // API'den dönen başarı mesajı
+      return data.message;
     } catch (error) {
       return rejectWithValue("An unexpected error occurred.");
     }
@@ -122,7 +121,7 @@ export const jobSlice = createSlice({
       state.selectedJob = action.payload;
     },
     clearSelectedJob: (state) => {
-      state.selectedJob = null; // Modalı kapatırken seçilen işi sıfırla
+      state.selectedJob = null;
     },
   },
   extraReducers: (builder) => {

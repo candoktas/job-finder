@@ -1,11 +1,11 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { clearSelectedJob, applyForJob } from "@/app/_components/jobSlice";
+import { clearSelectedJob, applyForJob } from "@/app/_store/slices/jobSlice";
 import { useEffect, useState } from "react";
-import { updateAppliedJobs } from "@/app/_components/authSlice";
+import { updateAppliedJobs } from "@/app/_store/slices/authSlice";
 
-function JobDetailModal(props) {
+function JobDetailModal() {
   const dispatch = useDispatch();
   const { selectedJob, loading, applyLoading } = useSelector(
     (state) => state.jobs,
@@ -36,7 +36,7 @@ function JobDetailModal(props) {
     const resultAction = await dispatch(applyForJob(selectedJob.id));
     if (applyForJob.fulfilled.match(resultAction)) {
       setApplyStatus("Application successful!");
-      await dispatch(updateAppliedJobs(selectedJob.id)); // Sadece job ID güncelleniyor
+      await dispatch(updateAppliedJobs(selectedJob.id));
     } else {
       setApplyStatus("Application failed. Please try again.");
     }

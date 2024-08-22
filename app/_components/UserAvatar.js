@@ -2,7 +2,7 @@
 
 import { useSelector } from "react-redux";
 
-function UserAvatar(props) {
+function UserAvatar() {
   const { user } = useSelector((state) => state.auth);
 
   if (!user) return null;

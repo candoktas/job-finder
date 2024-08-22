@@ -88,7 +88,7 @@ export const refreshAccessToken = createAsyncThunk(
       const data = await response.json();
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      return data; // Yeni accessToken ve refreshToken döner
+      return data;
     } catch (error) {
       return rejectWithValue("An unexpected error occurred.");
     }
@@ -119,7 +119,7 @@ export const fetchProfile = createAsyncThunk(
 
       const data = await response.json();
       localStorage.setItem("user", JSON.stringify(data.user));
-      return data.user; // Kullanıcı profil bilgilerini döndürüyoruz
+      return data.user;
     } catch (error) {
       return rejectWithValue("An unexpected error occurred.");
     }
@@ -179,7 +179,6 @@ export const authSlice = createSlice({
         localStorage.setItem("user", JSON.stringify(state.user));
       }
     },
-    // will be added
   },
   extraReducers: (builder) => {
     // Sign Up/Register

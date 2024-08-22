@@ -2,9 +2,9 @@
 
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { logout } from "@/app/_components/authSlice";
+import { logout } from "@/app/_store/slices/authSlice";
 
-function Logout(props) {
+function Logout() {
   const dispatch = useDispatch();
   const router = useRouter();
 

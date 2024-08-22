@@ -2,12 +2,12 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { loginUser } from "@/app/_components/authSlice";
+import { loginUser } from "@/app/_store/slices/authSlice";
 import { useRouter } from "next/navigation";
 
 function LogInModal({ isVisible, onClose, onSignUp }) {
   const dispatch = useDispatch();
-  const { loading, error, user } = useSelector((state) => state.auth); // Redux'tan error ve loading state'ini alıyoruz
+  const { loading, error, user } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();

@@ -4,10 +4,10 @@ import {
   fetchJobs,
   fetchJobById,
   withdrawFromJob,
-} from "@/app/_components/jobSlice";
+} from "@/app/_store/slices/jobSlice";
 import { useDispatch, useSelector } from "react-redux";
 import JobDetailModal from "@/app/_components/JobDetailModal";
-import JobFilter from "./JobFilter"; // Filter Component
+import JobFilter from "./JobFilter";
 
 function JobList() {
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ function JobList() {
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 10;
 
-  // Fetch jobs on component mount
   useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);

@@ -1,28 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { clearError, registerUser } from "@/app/_components/authSlice";
+import { clearError, registerUser } from "@/app/_store/slices/authSlice";
 
 function SignUpModal({ isVisible, onClose, onLogIn }) {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [successMessage, setSuccessMessage] = useState(""); // Yeni state
+  const [successMessage, setSuccessMessage] = useState("");
 
   if (!isVisible) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Şifre uzunluğunu kontrol et
     if (password.length < 8) {
       return;
     }
 
-    // API'ye git ve sonucu kontrol et
     const resultAction = await dispatch(registerUser({ email, password }));
 
-    // Eğer işlem başarılı olduysa, successMessage state'ini güncelle
     if (registerUser.fulfilled.match(resultAction)) {
       setSuccessMessage("Sign up successful! Please log in.");
     }
@@ -30,7 +27,7 @@ function SignUpModal({ isVisible, onClose, onLogIn }) {
 
   const handleClose = () => {
     dispatch(clearError());
-    setSuccessMessage(""); // Modal kapatıldığında mesajı temizle
+    setSuccessMessage("");
     onClose();
   };
 
@@ -108,7 +105,7 @@ function SignUpModal({ isVisible, onClose, onLogIn }) {
           </button>
         </form>
 
-        {successMessage && ( // Başarılı mesajı göster
+        {successMessage && (
           <p className="text-green-500 text-center mt-4">{successMessage}</p>
         )}
 

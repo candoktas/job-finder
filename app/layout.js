@@ -1,9 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Logo from "@/app/_components/Logo";
-import LogInModal from "@/app/_components/LogInModal";
-import { Provider } from "react-redux";
-import { store } from "@/app/_store/store";
 import ReduxProvider from "@/app/_components/ReduxProvider";
 import LoadToken from "@/app/_components/LoadToken";
 

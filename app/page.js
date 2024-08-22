@@ -3,10 +3,8 @@
 import Logo from "@/app/_components/Logo";
 import LogInModal from "@/app/_components/LogInModal";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, openModal } from "@/app/_components/modalSlice";
+import { closeModal, openModal } from "@/app/_store/slices/modalSlice";
 import SignUpModal from "@/app/_components/SignUpModal";
-import { useEffect } from "react";
-import { loadTokensFromStorage } from "@/app/_components/authSlice";
 
 export default function Home() {
   const { isVisible, modalType } = useSelector((state) => state.modal);

@@ -2,15 +2,14 @@
 
 import { useRouter, usePathname } from "next/navigation";
 
-function JobListButton(props) {
+function JobListButton() {
   const router = useRouter();
-  const pathname = usePathname(); // Current route'u alır
+  const pathname = usePathname();
 
   const handleJobList = () => {
     router.push("/joblist");
   };
 
-  // Eğer current route '/joblist' ise butona 'active' class ekleyin
   const isActive = pathname === "/joblist";
 
   return (
