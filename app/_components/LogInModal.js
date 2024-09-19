@@ -91,7 +91,7 @@ function LogInModal({ isVisible, onClose, onSignUp }) {
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <button
             className="text-blue-500 hover:text-blue-300"
             onClick={onSignUp}
